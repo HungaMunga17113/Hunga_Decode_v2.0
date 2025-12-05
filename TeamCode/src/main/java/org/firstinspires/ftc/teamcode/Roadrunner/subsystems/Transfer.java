@@ -13,7 +13,7 @@ public class Transfer {
 
 
     public Transfer(HardwareMap hardwareMap) {
-        transfer = hardwareMap.get(DcMotorEx.class, "intake");
+        transfer = hardwareMap.get(DcMotorEx.class, "transfer");
         transfer.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
     }
@@ -23,7 +23,7 @@ public class Transfer {
 
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            transfer.setPower(1.0);
+            transfer.setPower(0.6);
             return false;
         }
     }

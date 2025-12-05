@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.hunga_munga_26.teleOp;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.config.Config;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.PoseVelocity2d;
 import com.acmerobotics.roadrunner.Vector2d;
@@ -8,12 +11,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 import org.firstinspires.ftc.robotcore.internal.system.Deadline;
 import org.firstinspires.ftc.teamcode.Roadrunner.roadrunner_tutorial.base_subsystem_templates.MecanumDrive;
 
 import java.util.concurrent.TimeUnit;
-
+@Config
 @TeleOp
 public class V2IntakeShooterTest extends OpMode {
     Deadline gamepadRateLimit = new Deadline(250, TimeUnit.MILLISECONDS);
@@ -27,8 +31,13 @@ public class V2IntakeShooterTest extends OpMode {
     (Button) Initialize Period, before you press start on your program.
      */
     MecanumDrive drive;
+    public static double ticksPerSecond = 1175;
+    public static double transferPower = 0.75;
+    public static PIDFCoefficients coeffs = new PIDFCoefficients(600, 0, 0.002, 32);
 
     public void init() {
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+
         leftFront  = hardwareMap.get(DcMotor.class, "leftFront");
         leftBack   = hardwareMap.get(DcMotor.class, "leftBack");
         rightFront = hardwareMap.get(DcMotor.class, "rightFront");
@@ -55,6 +64,9 @@ public class V2IntakeShooterTest extends OpMode {
 
         leftOuttake.setDirection(DcMotorSimple.Direction.REVERSE);
         rightOuttake.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        leftOuttake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightOuttake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         drive = new MecanumDrive(hardwareMap, new Pose2d(-20, 55, 90));
 
     }
@@ -88,19 +100,24 @@ public class V2IntakeShooterTest extends OpMode {
     }
 
     private void Transfer() {
-        double transferPower = 1;
         if (gamepad1.right_bumper) {
-            intake.setPower(transferPower);
+            transfer.setPower(transferPower);
         } else if (gamepad1.y) {
-            intake.setPower(-transferPower);
+            transfer.setPower(-transferPower);
         } else {
-            intake.setPower(0);
+            transfer.setPower(0);
         }
     }
     public void shootTest() {
-        double outtakePower = 1;
-            leftOuttake.setPower(outtakePower);
-            rightOuttake.setPower(outtakePower);
+        leftOuttake.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, coeffs);
+        rightOuttake.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, coeffs);
+        leftOuttake.setVelocity(ticksPerSecond);
+        rightOuttake.setVelocity(ticksPerSecond);
+        telemetry.addData("Ticks/s", ticksPerSecond);
+        telemetry.addData("Left Velocity", leftOuttake.getVelocity());
+        telemetry.addData("Right Velocity", rightOuttake.getVelocity());
+        telemetry.addData("Error", ticksPerSecond-leftOuttake.getVelocity());
+        telemetry.update();
 
     }
 }
