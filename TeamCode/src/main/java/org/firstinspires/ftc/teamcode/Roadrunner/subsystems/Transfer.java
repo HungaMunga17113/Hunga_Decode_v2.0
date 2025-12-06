@@ -23,7 +23,7 @@ public class Transfer {
 
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            transfer.setPower(0.6);
+            transfer.setPower(0.35);
             return false;
         }
     }

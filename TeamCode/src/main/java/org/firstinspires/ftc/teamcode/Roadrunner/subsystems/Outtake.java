@@ -14,11 +14,11 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 public class Outtake {
     public final DcMotorEx leftOuttake,rightOuttake;
-    public static double ticksPerSecond = 1175;
+    public static double ticksPerSecond = 1185;
     //420,30
     //42,14.915
     //0.002,32,600,1165
-    public static PIDFCoefficients coeffs = new PIDFCoefficients(600, 0, 0.002, 32);
+    public static PIDFCoefficients coeffs = new PIDFCoefficients(605, 0, 0.002, 32);
 
 
     public Outtake(HardwareMap hardwareMap) {
