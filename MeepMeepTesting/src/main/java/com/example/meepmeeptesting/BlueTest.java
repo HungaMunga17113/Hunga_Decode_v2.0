@@ -20,7 +20,7 @@ public class BlueTest {
                 .setConstraints(90, 70, Math.toRadians(180), Math.toRadians(180), 15)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-55, -46, Math.toRadians(235)))
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-55, -46, Math.toRadians(233)))
                 .waitSeconds(0.1)
                 .strafeToConstantHeading(new Vector2d(-45,-45))
                 .waitSeconds(0.25)

@@ -21,7 +21,7 @@ public class Align_Blue_Auton extends LinearOpMode {
     @Override
     public void runOpMode() {
         //Pose that the robot starts at
-        Pose2d initialPose = new Pose2d(-55, -46, Math.toRadians(236));
+        Pose2d initialPose = new Pose2d(-55, -46, Math.toRadians(234));
         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
         Intake intake = new Intake(hardwareMap);
         Transfer transfer = new Transfer(hardwareMap);
@@ -32,7 +32,7 @@ public class Align_Blue_Auton extends LinearOpMode {
         //-----------------------Paths-----------------------\\
         Action shoot1path = drive.actionBuilder(initialPose)
                 .stopAndAdd(outtake.shoot())
-                .strafeToLinearHeading(new Vector2d(-25.5,-25.5), Math.toRadians(226.25))
+                .strafeToLinearHeading(new Vector2d(-25.5,-25.5), Math.toRadians(224.25))
                 .waitSeconds(3.5)
                 .stopAndAdd(transfer.in())
                 .stopAndAdd(intake.in())
@@ -40,8 +40,8 @@ public class Align_Blue_Auton extends LinearOpMode {
                 .stopAndAdd(transfer.idle())
                 .build();
 
-        Action intake1path = drive.actionBuilder(new Pose2d(-25.5, -25.5, Math.toRadians(226.25)))
-                .strafeToLinearHeading(new Vector2d(-10,-16.25),Math.toRadians(273))
+        Action intake1path = drive.actionBuilder(new Pose2d(-25.5, -25.5, Math.toRadians(224.25)))
+                .strafeToLinearHeading(new Vector2d(-10,-16.25),Math.toRadians(270))
                 .strafeToConstantHeading(new Vector2d(-9,-55),new TranslationalVelConstraint(55))
                 .stopAndAdd(intake.idle())
                 //.strafeToConstantHeading(new Vector2d(-11.5,-40))
@@ -50,7 +50,7 @@ public class Align_Blue_Auton extends LinearOpMode {
                 .build();
 
         Action shoot2path = drive.actionBuilder(new Pose2d(-9, -55, Math.toRadians(270)))
-                .strafeToLinearHeading(new Vector2d(-25,-25),Math.toRadians(229))
+                .strafeToLinearHeading(new Vector2d(-25,-25),Math.toRadians(227))
                 .waitSeconds(0.5)
                 .stopAndAdd(transfer.in())
                 .stopAndAdd(intake.in())
@@ -58,15 +58,15 @@ public class Align_Blue_Auton extends LinearOpMode {
                 .stopAndAdd(transfer.idle())
                 .build();
 
-        Action intake2path = drive.actionBuilder(new Pose2d(-25, -25, Math.toRadians(229)))
-                .strafeToLinearHeading(new Vector2d(17,-15.5),Math.toRadians(273))
-                .strafeToConstantHeading(new Vector2d(16,-62),new TranslationalVelConstraint(55))
+        Action intake2path = drive.actionBuilder(new Pose2d(-25, -25, Math.toRadians(227)))
+                .strafeToLinearHeading(new Vector2d(16.25,-15.5),Math.toRadians(270))
+                .strafeToConstantHeading(new Vector2d(15.25,-62),new TranslationalVelConstraint(55))
                 .stopAndAdd(intake.idle())
-                .lineToYLinearHeading(-43, Math.toRadians(229))
+                .lineToYConstantHeading(-43)
                 .build();
 
-        Action shoot3path = drive.actionBuilder(new Pose2d(16, -43, Math.toRadians(229)))
-                .strafeToLinearHeading(new Vector2d(-25,-25),Math.toRadians(229))
+        Action shoot3path = drive.actionBuilder(new Pose2d(16, -43, Math.toRadians(270)))
+                .strafeToLinearHeading(new Vector2d(-25,-25),Math.toRadians(227))
                 .waitSeconds(0.5)
                 .stopAndAdd(transfer.in())
                 .stopAndAdd(intake.in())
@@ -74,8 +74,8 @@ public class Align_Blue_Auton extends LinearOpMode {
                 .stopAndAdd(transfer.idle())
                 .build();
 
-        Action intake3path = drive.actionBuilder(new Pose2d(-25, -25, Math.toRadians(229)))
-                .strafeToLinearHeading(new Vector2d(36.5,-15.5),Math.toRadians(273))
+        Action intake3path = drive.actionBuilder(new Pose2d(-25, -25, Math.toRadians(227)))
+                .strafeToLinearHeading(new Vector2d(36.5,-15.5),Math.toRadians(270))
                 .strafeToConstantHeading(new Vector2d(35.5,-62),new TranslationalVelConstraint(55))
                 .stopAndAdd(intake.idle())
                 .build();
@@ -83,7 +83,7 @@ public class Align_Blue_Auton extends LinearOpMode {
         Action shoot4path = drive.actionBuilder(new Pose2d(35.5, -62, Math.toRadians(270)))
                 //.strafeToConstantHeading(new Vector2d(31.5,50))
                 .lineToYConstantHeading(-55)
-                .strafeToLinearHeading(new Vector2d(-25,-25),Math.toRadians(232))
+                .strafeToLinearHeading(new Vector2d(-25,-25),Math.toRadians(230))
                 .waitSeconds(0.5)
                 .stopAndAdd(transfer.in())
                 .stopAndAdd(intake.in())
@@ -93,10 +93,10 @@ public class Align_Blue_Auton extends LinearOpMode {
                 .stopAndAdd(outtake.idle())
                 .build();
 
-        Action extra = drive.actionBuilder(new Pose2d(-25, -25, Math.toRadians(232)))
+        Action extra = drive.actionBuilder(new Pose2d(-25, -25, Math.toRadians(230)))
                 .strafeToLinearHeading(new Vector2d(-20,-55),Math.toRadians(270))
                 .build();
-        Action extraTest = drive.actionBuilder(new Pose2d(-25, -25, Math.toRadians(232)))
+        Action extraTest = drive.actionBuilder(new Pose2d(-25, -25, Math.toRadians(230)))
                 .strafeToLinearHeading(new Vector2d(-25,-55),Math.toRadians(270))
                 .build();
 
