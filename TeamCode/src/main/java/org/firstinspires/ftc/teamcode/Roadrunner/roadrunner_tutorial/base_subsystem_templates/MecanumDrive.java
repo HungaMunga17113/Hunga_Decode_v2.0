@@ -53,6 +53,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 import org.firstinspires.ftc.teamcode.Roadrunner.roadrunner_other.Drawing;
 import org.firstinspires.ftc.teamcode.Roadrunner.roadrunner_other.Localizer;
+import org.firstinspires.ftc.teamcode.Roadrunner.roadrunner_other.PinpointLocalizer;
 import org.firstinspires.ftc.teamcode.Roadrunner.roadrunner_other.TwoDeadWheelLocalizer;
 import org.firstinspires.ftc.teamcode.Roadrunner.roadrunner_other.messages.DriveCommandMessage;
 import org.firstinspires.ftc.teamcode.Roadrunner.roadrunner_other.messages.MecanumCommandMessage;
@@ -75,13 +76,13 @@ public final class MecanumDrive {
                 RevHubOrientationOnRobot.UsbFacingDirection.UP;
 
         // drive model parameters
-        public double inPerTick = 0.001966955153422502;
-        public double lateralInPerTick = 0.0014408242727084943;
-        public double trackWidthTicks = 7506.636768165535;
+        public double inPerTick = 0.0019647973803;
+        public double lateralInPerTick = 0.0016001979461585023;
+        public double trackWidthTicks = 7380.390593543522;
 
         // feedforward parameters (in tick units)
-        public double kS = 0.9040368352313233;
-        public double kV = 0.00037597011996758984;
+        public double kS = 0.9439121032892315;
+        public double kV = 0.00036872098744983024;
         public double kA = 0.000053584;
 
         // path profile parameters (in inches)
@@ -263,8 +264,8 @@ public final class MecanumDrive {
         lazyImu = new LazyHardwareMapImu(hardwareMap, "imu", new RevHubOrientationOnRobot(PARAMS.logoFacingDirection, PARAMS.usbFacingDirection));
 
         voltageSensor = hardwareMap.voltageSensor.iterator().next();
-
-        localizer = new TwoDeadWheelLocalizer(hardwareMap, lazyImu.get(), PARAMS.inPerTick, pose);
+        localizer = new PinpointLocalizer(hardwareMap, PARAMS.inPerTick, pose);
+        //localizer = new TwoDeadWheelLocalizer(hardwareMap, lazyImu.get(), PARAMS.inPerTick, pose);
 
         FlightRecorder.write("MECANUM_PARAMS", PARAMS);
     }

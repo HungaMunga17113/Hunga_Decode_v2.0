@@ -57,7 +57,7 @@ public class V2IntakeShooterTest extends OpMode {
         transfer = hardwareMap.get(DcMotorEx.class, "transfer");
 
         intake.setDirection(DcMotorSimple.Direction.FORWARD);
-        transfer.setDirection(DcMotorSimple.Direction.FORWARD);
+        transfer.setDirection(DcMotorSimple.Direction.REVERSE);
 
         leftOuttake = hardwareMap.get(DcMotorEx.class, "leftOuttake");
         rightOuttake = hardwareMap.get(DcMotorEx.class, "rightOuttake");
@@ -100,9 +100,9 @@ public class V2IntakeShooterTest extends OpMode {
     }
 
     private void Transfer() {
-        if (gamepad1.right_bumper) {
+        if (gamepad1.y) {
             transfer.setPower(transferPower);
-        } else if (gamepad1.y) {
+        } else if (gamepad1.right_bumper) {
             transfer.setPower(-transferPower);
         } else {
             transfer.setPower(0);
@@ -111,8 +111,15 @@ public class V2IntakeShooterTest extends OpMode {
     public void shootTest() {
         leftOuttake.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, coeffs);
         rightOuttake.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, coeffs);
-        leftOuttake.setVelocity(ticksPerSecond);
-        rightOuttake.setVelocity(ticksPerSecond);
+        if (gamepad1.x) {
+            leftOuttake.setVelocity(-ticksPerSecond);
+            rightOuttake.setVelocity(-ticksPerSecond);
+        } else {
+            leftOuttake.setVelocity(ticksPerSecond);
+            rightOuttake.setVelocity(ticksPerSecond);
+        }
+
+
         telemetry.addData("Ticks/s", ticksPerSecond);
         telemetry.addData("Left Velocity", leftOuttake.getVelocity());
         telemetry.addData("Right Velocity", rightOuttake.getVelocity());

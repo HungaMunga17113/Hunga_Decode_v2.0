@@ -20,7 +20,7 @@ public class ExpV2Red {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-55, 46, Math.toRadians(36)))
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-55, 46, Math.toRadians(127)))
                 .strafeToLinearHeading(new Vector2d(-12,13),Math.toRadians(127),new TranslationalVelConstraint(80))
                 .waitSeconds(2)
                 .strafeToLinearHeading(new Vector2d(-12,55),Math.toRadians(90),new TranslationalVelConstraint(80))
