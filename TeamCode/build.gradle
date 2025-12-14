@@ -1,4 +1,4 @@
-/*
+
 buildscript {
     repositories {
         mavenCentral()
@@ -10,7 +10,7 @@ buildscript {
         classpath "dev.frozenmilk:Load:0.2.4"
     }
 }
- */
+
 //
 // build.gradle in TeamCode
 //
@@ -27,7 +27,7 @@ buildscript {
 // Include common definitions from above.
 apply from: '../build.common.gradle'
 apply from: '../build.dependencies.gradle'
-//apply plugin: 'dev.frozenmilk.sinister.sloth.load'
+apply plugin: 'dev.frozenmilk.sinister.sloth.load'
 
 
 
@@ -44,7 +44,7 @@ repositories {
         url = 'https://maven.brott.dev/'
     }
 }
-/*
+
 repositories {
     maven {
         url = "https://repo.dairy.foundation/releases"
@@ -68,7 +68,7 @@ dependencies {
     }
 }
 
- */
+ 
 dependencies {
     implementation project(':FtcRobotController')
     implementation("com.acmerobotics.roadrunner:ftc:0.1.25") {
