@@ -12,6 +12,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.internal.system.Deadline;
 import org.firstinspires.ftc.teamcode.Roadrunner.roadrunner_tutorial.base_subsystem_templates.MecanumDrive;
@@ -21,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 @TeleOp
 public class V2IntakeShooterTest extends OpMode {
     Deadline gamepadRateLimit = new Deadline(250, TimeUnit.MILLISECONDS);
-
+    //Sloth
     DcMotor intake;
     DcMotor transfer;
     DcMotorEx leftOuttake, rightOuttake;
@@ -31,9 +32,11 @@ public class V2IntakeShooterTest extends OpMode {
     (Button) Initialize Period, before you press start on your program.
      */
     MecanumDrive drive;
-    public static double ticksPerSecond = 1175;
-    public static double transferPower = 0.75;
-    public static PIDFCoefficients coeffs = new PIDFCoefficients(600, 0, 0.002, 32);
+    public static double ticksPerSecond = 1248.67;
+    public Servo servo;
+    public static double servoPos = 0.1867;
+    public static double transferPower = 0.8;
+    public static PIDFCoefficients coeffs = new PIDFCoefficients(2000, 0, 0.00367, 43);
 
     public void init() {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
@@ -59,6 +62,8 @@ public class V2IntakeShooterTest extends OpMode {
         intake.setDirection(DcMotorSimple.Direction.FORWARD);
         transfer.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        //0.44 low limit
+        //0.1 high limit
         leftOuttake = hardwareMap.get(DcMotorEx.class, "leftOuttake");
         rightOuttake = hardwareMap.get(DcMotorEx.class, "rightOuttake");
 
@@ -67,6 +72,8 @@ public class V2IntakeShooterTest extends OpMode {
 
         leftOuttake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightOuttake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        servo = hardwareMap.get(Servo.class, "Axon");
         drive = new MecanumDrive(hardwareMap, new Pose2d(-20, 55, 90));
 
     }
@@ -109,6 +116,7 @@ public class V2IntakeShooterTest extends OpMode {
         }
     }
     public void shootTest() {
+        servo.setPosition(servoPos);
         leftOuttake.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, coeffs);
         rightOuttake.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, coeffs);
         if (gamepad1.x) {
@@ -119,7 +127,7 @@ public class V2IntakeShooterTest extends OpMode {
             rightOuttake.setVelocity(ticksPerSecond);
         }
 
-
+        telemetry.addData("Target Velocity", ticksPerSecond);
         telemetry.addData("Ticks/s", ticksPerSecond);
         telemetry.addData("Left Velocity", leftOuttake.getVelocity());
         telemetry.addData("Right Velocity", rightOuttake.getVelocity());

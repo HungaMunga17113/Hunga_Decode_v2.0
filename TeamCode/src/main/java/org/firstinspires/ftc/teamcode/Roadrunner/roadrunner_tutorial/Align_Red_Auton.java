@@ -13,6 +13,7 @@ import org.firstinspires.ftc.teamcode.Roadrunner.roadrunner_tutorial.base_subsys
 import org.firstinspires.ftc.teamcode.Roadrunner.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.Roadrunner.subsystems.Transfer;
 import org.firstinspires.ftc.teamcode.Roadrunner.subsystems.Outtake;
+import org.firstinspires.ftc.teamcode.Roadrunner.subsystems.Servo1;
 
 @Config
 @Autonomous(name = "Align Red Auton")
@@ -26,11 +27,14 @@ public class Align_Red_Auton extends LinearOpMode {
         Intake intake = new Intake(hardwareMap);
         Transfer transfer = new Transfer(hardwareMap);
         Outtake outtake = new Outtake(hardwareMap);
+        Servo1 servo = new Servo1(hardwareMap);
+
 
 
 
         //-----------------------Paths-----------------------\\
         Action shoot1path = drive.actionBuilder(initialPose)
+                .stopAndAdd(servo.toPos2())
                 .stopAndAdd(outtake.shoot())
                 .strafeToLinearHeading(new Vector2d(-24.6,24.6), Math.toRadians(131))
                 .waitSeconds(3.3)

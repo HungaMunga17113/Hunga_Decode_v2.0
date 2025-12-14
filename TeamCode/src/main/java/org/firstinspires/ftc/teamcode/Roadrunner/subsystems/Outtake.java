@@ -20,7 +20,7 @@ public class Outtake {
     //420,30
     //42,14.915
     //0.002,32,600,1165
-    public static PIDFCoefficients coeffs = new PIDFCoefficients(605, 0, 0.002, 32);
+    public static PIDFCoefficients coeffs = new PIDFCoefficients(2000, 0, 0.002, 32);
 
 
     public Outtake(HardwareMap hardwareMap) {
