@@ -68,9 +68,10 @@ public class RedGoalAutoAlign extends OpMode {
         shootTest();
         double alignX = 72 + currentPose.position.x;
         double alignY = 72 - currentPose.position.y;
-        double angle = Math.atan2(alignX,alignY);
+        double angle = Math.atan(alignX/alignY);
+        double turnTowards =  90 + Math.toDegrees(angle);
         Action align = drive.actionBuilder(currentPose)
-                .turnTo(Math.toRadians(90+angle))
+                .turnTo(Math.toRadians(turnTowards))
                 .build();
         if (gamepad1.a) {
             Actions.runBlocking(align);
