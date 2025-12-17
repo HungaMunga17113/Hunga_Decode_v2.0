@@ -16,18 +16,16 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 @Config
 public class Outtake {
     public final DcMotorEx leftOuttake,rightOuttake;
-    public static double ticksPerSecond = 1185;
+    public static double ticksPerSecond = 1175;
     //420,30
     //42,14.915
     //0.002,32,600,1165
-    public static PIDFCoefficients coeffs = new PIDFCoefficients(2000, 0, 0.002, 32);
+    public static PIDFCoefficients coeffs = new PIDFCoefficients(700, 0, 0.00367, 32);
 
 
     public Outtake(HardwareMap hardwareMap) {
         leftOuttake = hardwareMap.get(DcMotorEx.class, "leftOuttake");
         rightOuttake = hardwareMap.get(DcMotorEx.class, "rightOuttake");
-        leftOuttake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        rightOuttake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         leftOuttake.setDirection(DcMotorSimple.Direction.REVERSE);
         rightOuttake.setDirection(DcMotorSimple.Direction.FORWARD);
         leftOuttake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

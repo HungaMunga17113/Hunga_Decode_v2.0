@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Transfer {
     public final DcMotorEx transfer;
-
+    public double transferValue = 0.9;
 
     public Transfer(HardwareMap hardwareMap) {
         transfer = hardwareMap.get(DcMotorEx.class, "transfer");
@@ -23,7 +23,7 @@ public class Transfer {
 
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            transfer.setPower(0.8);
+            transfer.setPower(transferValue);
             return false;
         }
     }
@@ -47,7 +47,7 @@ public class Transfer {
 
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            transfer.setPower(-0.8);
+            transfer.setPower(-transferValue);
             return false;
         }
     }

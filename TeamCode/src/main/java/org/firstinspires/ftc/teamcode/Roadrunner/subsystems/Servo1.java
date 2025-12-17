@@ -36,7 +36,7 @@ public class Servo1 {
     public class Servo_Position2 implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            servo.setPosition(0.1867);
+            servo.setPosition(0.115);
             return false;
         }
     }
