@@ -38,7 +38,7 @@ public class    Align_Blue_Auton extends LinearOpMode {
                 .stopAndAdd(servo.toPos2())
                 .stopAndAdd(outtake.shoot())
                 .strafeToLinearHeading(new Vector2d(-21,-21), Math.toRadians(229.5))
-                .waitSeconds(3)
+                .waitSeconds(2.5)
                 .stopAndAdd(transfer.in())
                 .stopAndAdd(intake.in())
                 .waitSeconds(1.2)
