@@ -16,9 +16,9 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 public class ShooterPIDTest extends OpMode {
 
     DcMotorEx leftOuttake, rightOuttake,intake,transfer;
-    public static double ticksPerSecond = 1420;
-    public static double transferPower = 0.55;
-    public static PIDFCoefficients coeffs = new PIDFCoefficients(42, 0, 0.0015, 14.915);
+    public static double ticksPerSecond = 1330;
+    public static double transferPower = 0.96;
+    public static PIDFCoefficients coeffs = new PIDFCoefficients(870, 0, 0.00467, 32);
     //Test f = 24.3158593995
 
     public void init() {
