@@ -32,11 +32,11 @@ public class V2IntakeShooterTest extends OpMode {
     (Button) Initialize Period, before you press start on your program.
      */
     MecanumDrive drive;
-    public static double ticksPerSecond = 1175;
+    public static double ticksPerSecond = 1330;
     public Servo servo;
-    public static double servoPos = 0.115;
-    public static double transferPower = 0.95;
-    public static PIDFCoefficients coeffs = new PIDFCoefficients(700, 0, 0.00367, 32);
+    public static double servoPos = 0.16;
+    public static double transferPower = 0.96;
+    public static PIDFCoefficients coeffs = new PIDFCoefficients(870, 0, 0.00467, 32);
     public void init() {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
