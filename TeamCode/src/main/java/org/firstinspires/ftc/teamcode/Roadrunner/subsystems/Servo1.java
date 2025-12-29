@@ -22,7 +22,7 @@ public class Servo1 {
         // Tells servo to move to position 0.0
         // Servos position typically a value between 0.0 and 1.0 which is the range of motion
         public boolean run(@NonNull TelemetryPacket packet) {
-            servo.setPosition(0.44);
+            servo.setPosition(1.0 - 0.44);
             return false;
         }
     }
@@ -36,7 +36,7 @@ public class Servo1 {
     public class Servo_Position2 implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            servo.setPosition(0.13);
+            servo.setPosition(1.0 - 0.13);
             return false;
         }
     }

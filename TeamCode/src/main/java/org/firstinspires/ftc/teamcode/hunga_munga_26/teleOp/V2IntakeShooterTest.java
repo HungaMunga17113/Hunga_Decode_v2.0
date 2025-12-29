@@ -36,7 +36,7 @@ public class V2IntakeShooterTest extends OpMode {
     public Servo servo;
     public static double servoPos = 0.16;
     public static double transferPower = 0.96;
-    public static PIDFCoefficients coeffs = new PIDFCoefficients(870, 0, 0.00467, 32);
+    public static PIDFCoefficients coeffs = new PIDFCoefficients(55, 0, 0.00367, 43);
     public void init() {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -77,6 +77,13 @@ public class V2IntakeShooterTest extends OpMode {
 
     }
 
+    private void setHood(double target) {
+        double min = 0.10; // hood UP
+        double max = 0.44; // hood DOWN
+        target = Math.max(min, Math.min(max, target));
+        servo.setPosition(1.0 - target); // invert because servo is flipped
+    }
+
     public void loop() {
         Drive();
         Intake();
@@ -115,7 +122,7 @@ public class V2IntakeShooterTest extends OpMode {
         }
     }
     public void shootTest() {
-        servo.setPosition(servoPos);
+        setHood(servoPos);
         leftOuttake.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, coeffs);
         rightOuttake.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, coeffs);
         if (gamepad1.x) {
